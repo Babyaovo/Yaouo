@@ -1,0 +1,173 @@
+/* 联系人详情页 - 通讯录风格 */
+.detail-info-list {
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+body.night-mode .detail-info-list {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.night-mode .info-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 15px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+body.night-mode .info-label {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.info-value {
+  font-size: 15px;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+body.night-mode .info-value {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 开始聊天按钮 */
+.start-chat-btn {
+  width: 100%;
+  margin: 20px 0;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 16px;
+}
+
+.start-chat-btn i {
+  font-size: 18px;
+}
+
+/* 折叠的设定预览 */
+.collapsed-section {
+  opacity: 0.8;
+}
+
+.settings-preview {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+body.night-mode .settings-preview {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.settings-preview p {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+body.night-mode .settings-preview p {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* 翻译开关 - 优化样式 */
+.translation-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: 12px;
+}
+
+body.night-mode .translation-toggle-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.translation-toggle-container label {
+  font-size: 15px;
+  color: #1e293b;
+  font-weight: 500;
+  margin: 0;
+  cursor: pointer;
+}
+
+body.night-mode .translation-toggle-container label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.translation-toggle {
+  position: relative;
+  width: 52px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.night-mode .translation-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.translation-toggle.on {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+body.night-mode .translation-toggle.on {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.translation-toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+body.night-mode .translation-toggle-slider {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.translation-toggle.on .translation-toggle-slider {
+  transform: translateX(22px);
+  background: #ffffff;
+}
+
+body.night-mode .translation-toggle.on .translation-toggle-slider {
+  background: #ffffff;
+}

@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>iOS Phone Interface</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        body.night-mode {
+            background: #000;
+        }
+
+        .phone-interface {
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            max-height: 932px;
+            background: #fafafa;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0;
+        }
+
+        @media (min-width: 768px) {
+            .phone-interface {
+                border-radius: 40px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            }
+        }
+
+        body.night-mode .phone-interface {
+            background: #000;
+        }
+
+        /* 状态栏 */
+        .status-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 12px 20px 8px;
+            color: rgba(0,0,0,0.9);
+            min-height: 50px;
+            z-index: 9999;
+        }
+
+        body.night-mode .status-bar {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 26px;
+            border-radius: 13px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(20px);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 0.5px solid rgba(255,255,255,0.4);
+        }
+
+        .theme-toggle-slider {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .theme-toggle.night {
+            background: rgba(255,255,255,0.15);
+            border: 0.5px solid rgba(255,255,255,0.2);
+        }
+
+        .theme-toggle.night .theme-toggle-slider {
+            transform: translateX(24px);
+            background: rgba(255,255,255,0.95);
+        }
+
+        /* 屏幕容器 */
+        .screen-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pages-container {
+            display: flex;
+            width: 200%;
+            height: 100%;
+            transition: transform 0.4s ease;
+        }
+
+        .page {
+            width: 50%;
+            height: 100%;
+            padding: 16px 20px 140px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .page::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 页面指示器 */
+        .page-indicator {
+            position: absolute;
+            bottom: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 999;
+        }
+
+        .page-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        body.night-mode .page-dot {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .page-dot.active {
+            background: rgba(0,0,0,0.8);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        body.night-mode .page-dot.active {
+            background: rgba(255,255,255,0.9);
+        }
+
+        /* 应用网格 */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px 16px;
+            padding: 0 4px;
+        }
+
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .app-item:active {
+            transform: scale(0.92);
+        }
+
+        .app-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(30px);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            border: 0.5px solid rgba(255,255,255,0.4);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        body.night-mode .app-icon-wrapper {
+            background: rgba(255,255,255,0.15);
+            border: 0.5px solid rgba(255,255,255,0.2);
+        }
+
+        .app-icon {
+            font-size: 26px;
+            color: #1e293b;
+        }
+
+        body.night-mode .app-icon {
+            color: rgba(255,255,255,0.95);
+        }
+
+        .app-name {
+            font-size: 11px;
+            color: #1a202c;
+            text-align: center;
+            max-width: 70px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        body.night-mode .app-name {
+            color: #e2e8f0;
+        }
+
+        /* 小部件 */
+        .widgets-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .widget-item {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+        }
+
+        body.night-mode .widget-item {
+            background: rgba(255,255,255,0.08);
+            border: 0.5px solid rgba(255,255,255,0.15);
+        }
+
+        .widget-item:active {
+            transform: scale(0.97);
+        }
+
+        .widget-item.large {
+            grid-column: span 2;
+            height: 180px;
+        }
+
+        .widget-item.extra-large {
+            grid-column: span 2;
+            aspect-ratio: 1/1;
+        }
+
+        /* 个人资料小部件 */
+        .profile-widget {
+            padding: 20px 24px;
+            color: #2d3748;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        body.night-mode .profile-widget {
+            color: #fff;
+        }
+
+        .profile-top {
+            display: flex;
+            gap: 20px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: rgba(0,0,0,0.5);
+        }
+
+        body.night-mode .profile-avatar {
+            background: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .profile-bio {
+            font-size: 14px;
+            color: rgba(0,0,0,0.7);
+            line-height: 1.4;
+        }
+
+        body.night-mode .profile-bio {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            color: rgba(0,0,0,0.7);
+        }
+
+        body.night-mode .tag {
+            background: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 0;
+            justify-content: space-around;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        body.night-mode .profile-stats {
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: rgba(0,0,0,0.6);
+            text-transform: uppercase;
+        }
+
+        body.night-mode .stat-label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Dock */
+        .dock {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #fff;
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 16px 10px;
+            display: flex;
+            justify-content: space-around;
+            gap: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        body.night-mode .dock {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .dock-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 12px;
+            transition: background 0.2s ease;
+            flex: 1;
+            max-width: 80px;
+        }
+
+        .dock-item.active {
+            background: #f1f5f9;
+        }
+
+        body.night-mode .dock-item.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .dock-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+
+        .dock-icon i {
+            font-size: 22px;
+            color: #2d3748;
+        }
+
+        body.night-mode .dock-icon i {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .dock-item.active .dock-icon i {
+            color: rgba(0,0,0,0.85);
+        }
+
+        body.night-mode .dock-item.active .dock-icon i {
+            color: #fff;
+        }
+
+        .dock-name {
+            font-size: 10px;
+            color: rgba(0,0,0,0.7);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        body.night-mode .dock-name {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .dock-item.active .dock-name {
+            color: rgba(0,0,0,0.85);
+        }
+
+        body.night-mode .dock-item.active .dock-name {
+            color: #fff;
+        }
+
+        /* 隐藏类 */
+        .hidden {
+            display: none !important;
+        }
+
+        /* 应用页面 */
+        .app-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #f8fafc;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .app-page.active {
+            transform: translateX(0);
+        }
+
+        body.night-mode .app-page {
+            background: rgba(20,20,20,0.95);
+            backdrop-filter: blur(40px);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: #fff;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            min-height: 60px;
+        }
+
+        body.night-mode .app-header {
+            background: rgba(20,20,20,0.5);
+            backdrop-filter: blur(60px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .app-header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        body.night-mode .app-header h1 {
+            color: #fff;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: rgba(0,0,0,0.7);
+            font-size: 16px;
+        }
+
+        body.night-mode .back-btn {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .back-btn:active {
+            background: rgba(0,0,0,0.05);
+            transform: scale(0.9);
+        }
+
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .app-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 设置页面 */
+        .settings-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        body.night-mode .settings-section {
+            background: rgba(30,41,59,0.4);
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        body.night-mode .section-title {
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        body.night-mode .form-group label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            background: #fff;
+            color: #1e293b;
+        }
+
+        body.night-mode .form-group input,
+        body.night-mode .form-group select,
+        body.night-mode .form-group textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .primary-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0,0,0,0.85);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        body.night-mode .primary-btn {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .primary-btn:hover {
+            background: rgba(0,0,0,0.95);
+        }
+
+        body.night-mode .primary-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .primary-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* 联系人列表 */
+        .contacts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        body.night-mode .contact-item {
+            background: rgba(30,41,59,0.4);
+        }
+
+        .contact-item:active {
+            transform: scale(0.98);
+        }
+
+        .contact-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        body.night-mode .contact-avatar {
+            background: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        body.night-mode .contact-name {
+            color: #fff;
+        }
+
+        .contact-role {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        body.night-mode .contact-role {
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* 聊天页面 */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .messages-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            position: relative;
+        }
+
+        .message-bubble.user {
+            align-self: flex-end;
+            background: rgba(0,0,0,0.85);
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+
+        body.night-mode .message-bubble.user {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .message-bubble.ai {
+            align-self: flex-start;
+            background: #f1f5f9;
+            color: #1e293b;
+            border-bottom-left-radius: 4px;
+        }
+
+        body.night-mode .message-bubble.ai {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .message-text {
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .message-time {
+            font-size: 11px;
+            margin-top: 4px;
+            opacity: 0.6;
+        }
+
+        .chat-input-container {
+            padding: 16px 20px;
+            background: #fff;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        body.night-mode .chat-input-container {
+            background: rgba(20,20,20,0.5);
+            backdrop-filter: blur(60px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 15px;
+            background: #f8fafc;
+            color: #1e293b;
+            resize: none;
+            max-height: 100px;
+        }
+
+        body.night-mode .chat-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .send-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.85);
+            border: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        body.night-mode .send-btn {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .send-btn:active:not(:disabled) {
+            transform: scale(0.9);
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #94a3b8;
+        }
+
+        body.night-mode .empty-state {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+        }
+
+        /* 添加按钮 */
+        .add-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: rgba(0,0,0,0.7);
+            font-size: 20px;
+        }
+
+        body.night-mode .add-btn {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .add-btn:active {
+            background: rgba(0,0,0,0.05);
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-interface">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="theme-toggle" id="themeToggle">
+                <div class="theme-toggle-slider"></div>
+            </div>
+        </div>
+
+        <!-- 屏幕容器 -->
+        <div class="screen-container">
+            <div class="pages-container" id="pagesContainer">
+                <!-- 第一页：应用 -->
+                <div class="page">
+                    <div class="apps-grid" id="appsGrid">
+                        <!-- Apps will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- 第二页：小部件 -->
+                <div class="page">
+                    <div class="widgets-grid">
+                        <!-- 个人资料小部件 -->
+                        <div class="widget-item extra-large">
+                            <div class="profile-widget">
+                                <div class="profile-top">
+                                    <div>
+                                        <div class="profile-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="profile-right">
+                                        <div class="profile-name">Your Name</div>
+                                        <div class="profile-bio">Write your personal bio here...</div>
+                                        <div class="profile-tags">
+                                            <span class="tag">#Design</span>
+                                            <span class="tag">#Travel</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <div class="stat-number">12.5K</div>
+                                        <div class="stat-label">Followers</div>
+                                    </div>
+                                    <div class="stat">
+                                        <div class="stat-number">856</div>
+                                        <div class="stat-label">Following</div>
+                                    </div>
+                                    <div class="stat">
+                                        <div class="stat-number">347</div>
+                                        <div class="stat-label">Posts</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 页面指示器 -->
+            <div class="page-indicator">
+                <div class="page-dot active" onclick="goToPage(0)"></div>
+                <div class="page-dot" onclick="goToPage(1)"></div>
+            </div>
+        </div>
+
+        <!-- Dock -->
+        <div class="dock" id="dock">
+            <div class="dock-item" onclick="openApp('settings')">
+                <div class="dock-icon"><i class="fas fa-cog"></i></div>
+                <div class="dock-name">设置</div>
+            </div>
+            <div class="dock-item" onclick="openApp('contacts')">
+                <div class="dock-icon"><i class="fas fa-address-book"></i></div>
+                <div class="dock-name">联系人</div>
+            </div>
+            <div class="dock-item" onclick="openApp('chats')">
+                <div class="dock-icon"><i class="fas fa-comment-dots"></i></div>
+                <div class="dock-name">聊天</div>
+            </div>
+            <div class="dock-item" onclick="openApp('gallery')">
+                <div class="dock-icon"><i class="fas fa-images"></i></div>
+                <div class="dock-name">画廊</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设置页面 -->
+    <div class="app-page" id="settingsPage">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()"><i class="fas fa-chevron-left"></i></button>
+            <h1>设置</h1>
+            <div style="width: 40px;"></div>
+        </div>
+        <div class="app-content">
+            <div class="settings-section">
+                <div class="section-title">API 设置</div>
+                <div class="form-group">
+                    <label>API URL</label>
+                    <input type="text" id="apiUrl" placeholder="https://api.example.com">
+                </div>
+                <div class="form-group">
+                    <label>API Key</label>
+                    <input type="password" id="apiKey" placeholder="Your API Key">
+                </div>
+                <div class="form-group">
+                    <label>模型</label>
+                    <select id="modelSelect">
+                        <option value="">选择模型</option>
+                    </select>
+                </div>
+                <button class="primary-btn" onclick="saveSettings()">保存设置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系人页面 -->
+    <div class="app-page" id="contactsPage">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()"><i class="fas fa-chevron-left"></i></button>
+            <h1>联系人</h1>
+            <button class="add-btn" onclick="showAddContact()"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="app-content">
+            <div class="contacts-list" id="contactsList">
+                <div class="empty-state">
+                    <i class="fas fa-address-book"></i>
+                    <p>暂无联系人</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 聊天列表页面 -->
+    <div class="app-page" id="chatsPage">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()"><i class="fas fa-chevron-left"></i></button>
+            <h1>聊天</h1>
+            <div style="width: 40px;"></div>
+        </div>
+        <div class="app-content">
+            <div class="contacts-list" id="chatsList">
+                <div class="empty-state">
+                    <i class="fas fa-comment-dots"></i>
+                    <p>暂无聊天</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 画廊页面 -->
+    <div class="app-page" id="galleryPage">
+        <div class="app-header">
+            <button class="back-btn" onclick="closeApp()"><i class="fas fa-chevron-left"></i></button>
+            <h1>画廊</h1>
+            <div style="width: 40px;"></div>
+        </div>
+        <div class="app-content">
+            <div class="empty-state">
+                <i class="fas fa-images"></i>
+                <p>画廊功能开发中...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局状态
+        let appState = {
+            currentPage: 0,
+            isNightMode: false,
+            contacts: [],
+            chats: [],
+            currentApp: null
+        };
+
+        // 初始化
+        function init() {
+            loadState();
+            updateUI();
+            setupEventListeners();
+            initApps();
+        }
+
+        // 加载状态
+        function loadState() {
+            const saved = localStorage.getItem('phoneAppState');
+            if (saved) {
+                appState = { ...appState, ...JSON.parse(saved) };
+                if (appState.isNightMode) {
+                    document.body.classList.add('night-mode');
+                    document.getElementById('themeToggle').classList.add('night');
+                }
+            }
+        }
+
+        // 保存状态
+        function saveState() {
+            localStorage.setItem('phoneAppState', JSON.stringify(appState));
+        }
+
+        // 更新UI
+        function updateUI() {
+            updatePageIndicator();
+            updateContactsList();
+            updateChatsList();
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 主题切换
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+            // 页面滑动
+            let startX = 0;
+            const pagesContainer = document.getElementById('pagesContainer');
+            
+            pagesContainer.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+
+            pagesContainer.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0 && appState.currentPage < 1) {
+                        goToPage(1);
+                    } else if (diff < 0 && appState.currentPage > 0) {
+                        goToPage(0);
+                    }
+                }
+            });
+        }
+
+        // 初始化应用网格
+        function initApps() {
+            const apps = [
+                { id: 'settings', icon: 'fas fa-cog', name: '设置' },
+                { id: 'contacts', icon: 'fas fa-address-book', name: '联系人' },
+                { id: 'chats', icon: 'fas fa-comment-dots', name: '聊天' },
+                { id: 'gallery', icon: 'fas fa-images', name: '画廊' },
+                { id: 'camera', icon: 'fas fa-camera', name: '相机' },
+                { id: 'photos', icon: 'fas fa-image', name: '照片' },
+                { id: 'maps', icon: 'fas fa-map', name: '地图' },
+                { id: 'weather', icon: 'fas fa-cloud-sun', name: '天气' }
+            ];
+
+            const grid = document.getElementById('appsGrid');
+            grid.innerHTML = apps.map(app => `
+                <div class="app-item" onclick="openApp('${app.id}')">
+                    <div class="app-icon-wrapper">
+                        <div class="app-icon"><i class="${app.icon}"></i></div>
+                    </div>
+                    <div class="app-name">${app.name}</div>
+                </div>
+            `).join('');
+        }
+
+        // 主题切换
+        function toggleTheme() {
+            appState.isNightMode = !appState.isNightMode;
+            document.body.classList.toggle('night-mode');
+            document.getElementById('themeToggle').classList.toggle('night');
+            saveState();
+        }
+
+        // 切换页面
+        function goToPage(page) {
+            appState.currentPage = page;
+            document.getElementById('pagesContainer').style.transform = `translateX(-${page * 50}%)`;
+            updatePageIndicator();
+            saveState();
+        }
+
+        // 更新页面指示器
+        function updatePageIndicator() {
+            const dots = document.querySelectorAll('.page-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === appState.currentPage);
+            });
+        }
+
+        // 打开应用
+        function openApp(appId) {
+            const pages = {
+                'settings': 'settingsPage',
+                'contacts': 'contactsPage',
+                'chats': 'chatsPage',
+                'gallery': 'galleryPage'
+            };
+
+            const pageId = pages[appId];
+            if (pageId) {
+                appState.currentApp = appId;
+                const page = document.getElementById(pageId);
+                page.classList.add('active');
+                
+                // 更新dock激活状态
+                document.querySelectorAll('.dock-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                saveState();
+            }
+        }
+
+        // 关闭应用
+        function closeApp() {
+            const pages = document.querySelectorAll('.app-page');
+            pages.forEach(page => page.classList.remove('active'));
+            appState.currentApp = null;
+            
+            // 清除dock激活状态
+            document.querySelectorAll('.dock-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            saveState();
+        }
+
+        // 保存设置
+        function saveSettings() {
+            const apiUrl = document.getElementById('apiUrl').value;
+            const apiKey = document.getElementById('apiKey').value;
+            const model = document.getElementById('modelSelect').value;
+            
+            appState.apiSettings = { apiUrl, apiKey, model };
+            saveState();
+            alert('设置已保存');
+        }
+
+        // 更新联系人列表
+        function updateContactsList() {
+            const list = document.getElementById('contactsList');
+            if (appState.contacts.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-address-book"></i>
+                        <p>暂无联系人</p>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = appState.contacts.map(contact => `
+                    <div class="contact-item" onclick="openChat('${contact.id}')">
+                        <div class="contact-avatar">
+                            ${contact.avatar ? `<img src="${contact.avatar}">` : '<i class="fas fa-user"></i>'}
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-name">${contact.name}</div>
+                            <div class="contact-role">${contact.role || ''}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // 更新聊天列表
+        function updateChatsList() {
+            const list = document.getElementById('chatsList');
+            if (appState.chats.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-comment-dots"></i>
+                        <p>暂无聊天</p>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = appState.chats.map(chat => `
+                    <div class="contact-item" onclick="openChat('${chat.contactId}')">
+                        <div class="contact-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-name">${chat.contactName}</div>
+                            <div class="contact-role">${chat.lastMessage || ''}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // 显示添加联系人
+        function showAddContact() {
+            const name = prompt('请输入联系人姓名：');
+            if (name) {
+                const contact = {
+                    id: Date.now().toString(),
+                    name: name,
+                    role: '',
+                    avatar: ''
+                };
+                appState.contacts.push(contact);
+                updateContactsList();
+                saveState();
+            }
+        }
+
+        // 打开聊天
+        function openChat(contactId) {
+            alert('聊天功能开发中...');
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
