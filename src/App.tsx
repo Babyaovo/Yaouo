@@ -1,15 +1,7 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { SettingsPage } from './components/pages/SettingsPage';
 import { ContactsApp } from './components/apps/ContactsApp';
 import { ChatApp } from './components/apps/ChatApp';
 import { GalleryApp } from './components/apps/GalleryApp';
-import { StatusBar } from './components/StatusBar';
-import { ProfileWidget } from './components/ProfileWidget';
-import { AppsGrid } from './components/AppsGrid';
-import { MusicWidget } from './components/MusicWidget';
-import { PageIndicator } from './components/PageIndicator';
-import { Dock } from './components/Dock';
 
 interface AppState {
   currentPage: number;
@@ -38,8 +30,6 @@ interface AppState {
   chats: any[];
   currentChatId: string | null;
   currentContactId: string | null;
-  appIcons: Record<string, string>;
-  appNames: Record<string, string>;
 }
 
 export default function App() {
@@ -69,19 +59,7 @@ export default function App() {
     contacts: [],
     chats: [],
     currentChatId: null,
-    currentContactId: null,
-    appIcons: {
-      'settings': 'fas fa-cog',
-      'contacts': 'fas fa-address-book',
-      'chat-list': 'fas fa-comment-dots',
-      'gallery': 'fas fa-images'
-    },
-    appNames: {
-      'settings': 'Settings',
-      'contacts': 'Contacts',
-      'chat-list': 'Chats',
-      'gallery': 'Gallery'
-    }
+    currentContactId: null
   });
 
   useEffect(() => {
@@ -200,7 +178,6 @@ export default function App() {
           appState={appState} 
           onUpdate={updateProfile} 
           onClose={closeApp}
-          onNavigate={openApp}
         />;
       case 'chat-list':
         return <ChatApp 
@@ -231,34 +208,9 @@ export default function App() {
           backgroundPosition: 'center'
         }}
       >
-        {/* 壁纸遮罩层 - 增强文字可读性 */}
-        {appState.homeWallpaper && (
-          <div 
-            className="wallpaper-overlay"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              background: appState.isNightMode 
-                ? 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.6) 100%)'
-                : 'linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.3) 100%)',
-              backdropFilter: 'blur(0.5px)',
-              WebkitBackdropFilter: 'blur(0.5px)',
-              pointerEvents: 'none',
-              zIndex: 0
-            }}
-          />
-        )}
-        
         <div 
           className="pages-container" 
-          style={{ 
-            transform: `translateX(-${appState.currentPage * 50}%)`,
-            position: 'relative',
-            zIndex: 1
-          }}
+          style={{ transform: `translateX(-${appState.currentPage * 50}%)` }}
           onTouchStart={handleTouchSwipe}
         >
           <div className="page" id="page-0">
@@ -269,7 +221,7 @@ export default function App() {
               />
             </div>
             
-            <AppsGrid onOpenApp={openApp} appState={appState} />
+            <AppsGrid onOpenApp={openApp} />
           </div>
 
           <div className="page" id="page-1">

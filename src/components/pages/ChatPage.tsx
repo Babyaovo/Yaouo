@@ -180,7 +180,6 @@ ${conversationText}
       // 根据聊天模式选择不同的系统提示词
       const chatMode = chat?.settings?.chatMode || 'message';
       const charLanguage = contact.charLanguage || 'zh-CN';
-      const needsTranslation = contact.needsTranslation !== false && charLanguage !== 'zh-CN';
       
       // 语言映射
       const languageNames: Record<string, string> = {
@@ -197,6 +196,7 @@ ${conversationText}
       };
       
       const languageName = languageNames[charLanguage] || '简体中文';
+      const needsTranslation = charLanguage !== 'zh-CN';
       
       // 语言与翻译规则
       const languageRules = needsTranslation ? `
@@ -482,8 +482,6 @@ Hey, you're finally here
   const showUserAvatar = chat?.settings?.showUserAvatar !== false;
   const showHeaderAvatar = chat?.settings?.showHeaderAvatar !== false;
 
-  console.log('Avatar Settings:', { showAIAvatar, showUserAvatar, showHeaderAvatar, contact });
-
   return (
     <div className="app-page chat-page">
       <div className="app-header chat-header">
@@ -491,9 +489,13 @@ Hey, you're finally here
           <i className="fas fa-chevron-left"></i>
         </button>
         <div className="chat-title">
-          {showHeaderAvatar && contact?.charAvatar && (
+          {showHeaderAvatar && (
             <div className="title-avatar">
-              <img src={contact.charAvatar} alt={contact.charName} />
+              {contact.charAvatar ? (
+                <img src={contact.charAvatar} alt={contact.charName} />
+              ) : (
+                <i className="fas fa-user"></i>
+              )}
             </div>
           )}
           <h1>{contact.charName}</h1>
@@ -568,11 +570,12 @@ Hey, you're finally here
           onKeyPress={(e) => e.key === 'Enter' && addToPending()}
           placeholder="输入消息..."
           className="chat-input"
+          disabled={isSending}
         />
         <button 
           className="add-pending-btn"
           onClick={addToPending}
-          disabled={!message.trim()}
+          disabled={!message.trim() || isSending}
           title="添加到待发送区"
         >
           <i className="fas fa-plus"></i>

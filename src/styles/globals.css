@@ -98,7 +98,7 @@ body.night-mode .status-bar {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #ffffff;
+  background: #3b82f6;
   position: absolute;
   left: 3px;
   transition: transform 0.3s ease;
@@ -808,7 +808,7 @@ body.night-mode .music-progress-compact {
 
 .music-progress-bar-compact {
   height: 100%;
-  background: #94a3b8;
+  background: #3b82f6;
   border-radius: 2px;
   position: relative;
   transition: width 0.1s ease;
@@ -857,7 +857,7 @@ body.night-mode .music-button-compact:hover {
 .music-button-compact.play-pause {
   width: 32px;
   height: 32px;
-  background: #94a3b8;
+  background: #3b82f6;
   color: #fff;
 }
 
@@ -1026,7 +1026,7 @@ body.night-mode .dock-icon i {
 }
 
 .dock-item.active .dock-icon i {
-  color: rgba(0, 0, 0, 0.85);
+  color: #3b82f6;
 }
 
 body.night-mode .dock-item.active .dock-icon i {
@@ -1045,7 +1045,7 @@ body.night-mode .dock-name {
 }
 
 .dock-item.active .dock-name {
-  color: rgba(0, 0, 0, 0.85);
+  color: #3b82f6;
 }
 
 body.night-mode .dock-item.active .dock-name {
@@ -1086,13 +1086,13 @@ body.night-mode .mode-option {
 }
 
 .mode-option.active {
-  border-color: rgba(0, 0, 0, 0.3);
-  background: rgba(0, 0, 0, 0.05);
+  border-color: #3b82f6;
+  background: #eff6ff;
 }
 
 body.night-mode .mode-option.active {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.15);
+  border-color: #60a5fa;
+  background: rgba(59, 130, 246, 0.15);
 }
 
 .mode-icon {
@@ -1114,8 +1114,8 @@ body.night-mode .mode-icon {
 }
 
 .mode-option.active .mode-icon {
-  background: rgba(0, 0, 0, 0.15);
-  color: rgba(0, 0, 0, 0.9);
+  background: #3b82f6;
+  color: white;
 }
 
 .mode-info {
@@ -1144,12 +1144,12 @@ body.night-mode .mode-desc {
 
 .mode-check {
   font-size: 20px;
-  color: rgba(0, 0, 0, 0.7);
+  color: #3b82f6;
   flex-shrink: 0;
 }
 
 body.night-mode .mode-check {
-  color: rgba(255, 255, 255, 0.9);
+  color: #60a5fa;
 }
 
 /* App Pages */
@@ -1186,9 +1186,9 @@ body.night-mode .app-page {
 }
 
 body.night-mode .app-header {
-  background: rgba(20, 20, 20, 0.5);
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -1213,7 +1213,7 @@ body.night-mode .app-header h1 {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: rgba(0, 0, 0, 0.7);
+  color: #3b82f6;
   font-size: 16px;
   flex-shrink: 0;
 }
@@ -1360,19 +1360,19 @@ body.night-mode .form-select:focus {
 }
 
 .primary-btn {
-  background: rgba(0, 0, 0, 0.85);
+  background: #3b82f6;
   color: #fff;
 }
 
 body.night-mode .primary-btn {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(51, 65, 85, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: rgba(255, 255, 255, 0.95);
 }
 
 .primary-btn:hover {
-  background: rgba(0, 0, 0, 0.95);
+  background: #2563eb;
 }
 
 .primary-btn:active {
@@ -1466,7 +1466,7 @@ body.night-mode .message-box {
 }
 
 .toggle-switch.active {
-  background: rgba(0, 0, 0, 0.2);
+  background: #3b82f6;
 }
 
 /* Contacts Page */
@@ -1656,7 +1656,7 @@ body.night-mode .avatar-preview {
   padding: 8px 20px;
   border-radius: 20px;
   border: none;
-  background: rgba(0, 0, 0, 0.85);
+  background: #3b82f6;
   color: #fff;
   font-size: 13px;
   font-weight: 500;
@@ -2145,17 +2145,17 @@ body.night-mode .chat-messages {
   white-space: pre-wrap;
 }
 
-/* 用户消息 - 灰色 */
+/* 用户消息 - Instagram蓝色 */
 .message.user .message-bubble {
-  background: #94a3b8;
+  background: #0084FF;
   color: #fff;
   border: none;
 }
 
 body.night-mode .message.user .message-bubble {
-  background: rgba(255, 255, 255, 0.15);
+  background: #0084FF;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
 }
 
 /* AI消息 - 浅灰色 */
@@ -2166,9 +2166,9 @@ body.night-mode .message.user .message-bubble {
 }
 
 body.night-mode .message.assistant .message-bubble {
-  background: rgba(255, 255, 255, 0.08);
+  background: #262626;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: none;
 }
 
 .message-bubble.error {
@@ -2230,7 +2230,7 @@ body.night-mode .chat-input:focus {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.85);
+  background: #3b82f6;
   border: none;
   color: #fff;
   display: flex;
@@ -2386,7 +2386,7 @@ body.night-mode .send-all-btn {
 
 .settings-value {
   float: right;
-  color: rgba(0, 0, 0, 0.65);
+  color: #3b82f6;
   font-weight: 600;
 }
 
@@ -2414,9 +2414,9 @@ body.night-mode .slider {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.8);
+  background: #3b82f6;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
   transition: all 0.2s ease;
 }
 
@@ -2437,10 +2437,10 @@ body.night-mode .slider::-webkit-slider-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.8);
+  background: #3b82f6;
   cursor: pointer;
   border: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
 }
 
 body.night-mode .slider::-moz-range-thumb {
@@ -2602,7 +2602,7 @@ body.night-mode .menu-item-icon {
 
 .menu-item-icon i {
   font-size: 18px;
-  color: rgba(0, 0, 0, 0.7);
+  color: #3b82f6;
 }
 
 body.night-mode .menu-item-icon i {
@@ -2703,8 +2703,8 @@ body.night-mode .avatar-toggle {
 }
 
 .avatar-toggle.on {
-  background: rgba(160, 160, 160, 0.8);
-  border: 0.5px solid rgba(160, 160, 160, 0.4);
+  background: rgba(59, 130, 246, 0.8);
+  border: 0.5px solid rgba(59, 130, 246, 0.4);
 }
 
 body.night-mode .avatar-toggle.on {
@@ -2715,54 +2715,6 @@ body.night-mode .avatar-toggle.on {
 .avatar-toggle.on .avatar-toggle-slider {
   transform: translateX(24px);
   background: rgba(255, 255, 255, 0.95);
-}
-
-/* 颜色设置样式 */
-.color-settings-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  background: #f8fafc;
-  border-radius: 12px;
-  margin-bottom: 12px;
-}
-
-body.night-mode .color-settings-item {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.color-settings-item label {
-  font-size: 15px;
-  color: #1e293b;
-}
-
-body.night-mode .color-settings-item label {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.color-input {
-  width: 60px;
-  height: 40px;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  background: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.color-input:hover {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-body.night-mode .color-input {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-body.night-mode .color-input:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Modal */
@@ -3250,233 +3202,4 @@ body.night-mode .coming-soon-placeholder i {
 .coming-soon-placeholder p {
   font-size: 16px;
   color: #94a3b8;
-}
-
-/* Tab Bar - 统一的标签栏样式 */
-.tab-bar {
-  display: flex;
-  padding: 8px 16px;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  flex-shrink: 0;
-}
-
-body.night-mode .tab-bar {
-  background: rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.tab-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 10px 8px;
-  border-radius: 10px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.tab-item i {
-  font-size: 18px;
-  color: #64748b;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.tab-item span {
-  font-size: 10px;
-  color: #64748b;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-body.night-mode .tab-item i,
-body.night-mode .tab-item span {
-  color: #94a3b8;
-}
-
-.tab-item.active {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-body.night-mode .tab-item.active {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.tab-item.active i,
-.tab-item.active span {
-  color: #0f172a;
-}
-
-body.night-mode .tab-item.active i,
-body.night-mode .tab-item.active span {
-  color: #fff;
-}
-
-.tab-item:active {
-  transform: scale(0.95);
-}
-
-/* App List - 图标名称自定义列表 */
-.app-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.app-item-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.2s ease;
-}
-
-body.night-mode .app-item-row {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.app-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-}
-
-.app-icon-preview {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-body.night-mode .app-icon-preview {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.app-icon-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.app-icon-preview i {
-  font-size: 22px;
-  color: #475569;
-}
-
-body.night-mode .app-icon-preview i {
-  color: #cbd5e1;
-}
-
-.app-label {
-  font-size: 15px;
-  color: #1e293b;
-  font-weight: 500;
-}
-
-body.night-mode .app-label {
-  color: #fff;
-}
-
-.app-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.action-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.05);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-body.night-mode .action-btn {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.action-btn:active {
-  transform: scale(0.9);
-  background: rgba(0, 0, 0, 0.1);
-}
-
-body.night-mode .action-btn:active {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.action-btn i {
-  font-size: 14px;
-  color: #64748b;
-}
-
-body.night-mode .action-btn i {
-  color: #cbd5e1;
-}
-
-.action-btn.save {
-  background: rgba(34, 197, 94, 0.15);
-}
-
-body.night-mode .action-btn.save {
-  background: rgba(34, 197, 94, 0.2);
-}
-
-.action-btn.save i {
-  color: #16a34a;
-}
-
-body.night-mode .action-btn.save i {
-  color: #4ade80;
-}
-
-.name-input {
-  flex: 1;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: 15px;
-  color: #1e293b;
-  outline: none;
-  transition: all 0.2s ease;
-}
-
-body.night-mode .name-input {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-.name-input:focus {
-  background: rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.2);
-}
-
-body.night-mode .name-input:focus {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
 }

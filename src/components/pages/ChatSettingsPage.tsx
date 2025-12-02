@@ -371,27 +371,6 @@ function AppearanceSettingsPage({ chat, appState, onUpdate, onBack, onClose }: a
   const [showAIAvatar, setShowAIAvatar] = useState(chat?.settings?.showAIAvatar !== false);
   const [showUserAvatar, setShowUserAvatar] = useState(chat?.settings?.showUserAvatar !== false);
   const [showHeaderAvatar, setShowHeaderAvatar] = useState(chat?.settings?.showHeaderAvatar !== false);
-  
-  // 文字颜色设置
-  const [dialogColor, setDialogColor] = useState(chat?.settings?.dialogColor || '#ffffff');
-  const [translationColor, setTranslationColor] = useState(chat?.settings?.translationColor || '#a0a0a0');
-  const [actionColor, setActionColor] = useState(chat?.settings?.actionColor || '#d0d0d0');
-
-  const saveColorSettings = () => {
-    const updatedChats = appState.chats.map((c: any) => 
-      c.id === chat.id ? { 
-        ...c, 
-        settings: {
-          ...c.settings,
-          dialogColor,
-          translationColor,
-          actionColor
-        }
-      } : c
-    );
-    onUpdate({ chats: updatedChats });
-    alert('颜色设置已保存！');
-  };
 
   const handleWallpaperUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -525,50 +504,6 @@ function AppearanceSettingsPage({ chat, appState, onUpdate, onBack, onClose }: a
               <div className="avatar-toggle-slider"></div>
             </div>
           </div>
-        </div>
-
-        {/* 文字颜色设置 */}
-        <div className="settings-section">
-          <div className="section-title">文字颜色</div>
-          
-          <div className="color-settings-item">
-            <label>对话文字颜色</label>
-            <input
-              type="color"
-              value={dialogColor}
-              onChange={(e) => setDialogColor(e.target.value)}
-              className="color-input"
-            />
-          </div>
-
-          <div className="color-settings-item">
-            <label>翻译文字颜色</label>
-            <input
-              type="color"
-              value={translationColor}
-              onChange={(e) => setTranslationColor(e.target.value)}
-              className="color-input"
-            />
-          </div>
-
-          <div className="color-settings-item">
-            <label>动作文字颜色</label>
-            <input
-              type="color"
-              value={actionColor}
-              onChange={(e) => setActionColor(e.target.value)}
-              className="color-input"
-            />
-          </div>
-
-          <button 
-            className="primary-btn"
-            onClick={saveColorSettings}
-            style={{ marginTop: '16px' }}
-          >
-            <i className="fas fa-check"></i>
-            <span>保存颜色设置</span>
-          </button>
         </div>
       </div>
     </div>

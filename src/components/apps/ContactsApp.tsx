@@ -8,10 +8,9 @@ interface ContactsAppProps {
   appState: any;
   onUpdate: (updates: any) => void;
   onClose: () => void;
-  onNavigate?: (page: string) => void;
 }
 
-export function ContactsApp({ appState, onUpdate, onClose, onNavigate }: ContactsAppProps) {
+export function ContactsApp({ appState, onUpdate, onClose }: ContactsAppProps) {
   const [subPage, setSubPage] = useState<'list' | 'detail' | 'edit'>('list');
   const [currentContactId, setCurrentContactId] = useState<string | null>(null);
 
@@ -28,13 +27,6 @@ export function ContactsApp({ appState, onUpdate, onClose, onNavigate }: Contact
   const backToList = () => {
     setSubPage('list');
     setCurrentContactId(null);
-  };
-  
-  const handleNavigate = (page: string) => {
-    if (onNavigate) {
-      onNavigate(page);
-    }
-    onClose(); // 关闭联系人app
   };
 
   return (
@@ -54,7 +46,6 @@ export function ContactsApp({ appState, onUpdate, onClose, onNavigate }: Contact
               onClose={onClose}
               onOpenDetail={openDetail}
               onOpenEdit={openEdit}
-              onNavigate={handleNavigate}
             />
           </motion.div>
         )}
@@ -70,10 +61,8 @@ export function ContactsApp({ appState, onUpdate, onClose, onNavigate }: Contact
           >
             <ContactDetailPage
               appState={{ ...appState, currentContactId }}
-              onUpdate={onUpdate}
               onClose={backToList}
               onEdit={() => openEdit(currentContactId || undefined)}
-              onNavigate={handleNavigate}
             />
           </motion.div>
         )}

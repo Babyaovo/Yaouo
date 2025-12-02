@@ -13,7 +13,6 @@ export function EditContactPage({ appState, onUpdate, onClose }: EditContactPage
   const [charAvatar, setCharAvatar] = useState(editingContact?.charAvatar || '');
   const [charSettings, setCharSettings] = useState(editingContact?.charSettings || '');
   const [charLanguage, setCharLanguage] = useState(editingContact?.charLanguage || 'zh-CN');
-  const [needsTranslation, setNeedsTranslation] = useState(editingContact?.needsTranslation !== false);
   const [userName, setUserName] = useState(editingContact?.userName || '');
   const [userAvatar, setUserAvatar] = useState(editingContact?.userAvatar || '');
   const [userSettings, setUserSettings] = useState(editingContact?.userSettings || '');
@@ -100,7 +99,6 @@ export function EditContactPage({ appState, onUpdate, onClose }: EditContactPage
       charAvatar,
       charSettings,
       charLanguage,
-      needsTranslation,
       userName,
       userAvatar,
       userSettings,
@@ -200,16 +198,6 @@ export function EditContactPage({ appState, onUpdate, onClose }: EditContactPage
               <option value="yue">粤语</option>
               <option value="ko-KR">韩语</option>
             </select>
-            
-            <div className="translation-toggle-container">
-              <label htmlFor="needsTranslation">需要翻译</label>
-              <div 
-                className={`translation-toggle ${needsTranslation ? 'on' : 'off'}`}
-                onClick={() => setNeedsTranslation(!needsTranslation)}
-              >
-                <div className="translation-toggle-slider"></div>
-              </div>
-            </div>
           </div>
         </div>
 

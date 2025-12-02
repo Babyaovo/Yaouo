@@ -1,75 +1,86 @@
 /* ============================================
-   全新夜间模式 - 纯黑白灰 极简设计
-   绝对禁止：蓝色、黄色、绿色、彩色
-   仅允许：黑色、白色、灰色
+   全新夜间模式 - 纯黑灰 + iOS 磨砂玻璃
+   用 !important 强制覆盖所有蓝黑色
    ============================================ */
 
-/* ========== 基础背景 ========== */
+/* 基础背景 */
 body.night-mode {
-  background: #000000 !important;
+  background: #000 !important;
 }
 
 body.night-mode .phone-interface {
-  background: #000000 !important;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9) !important;
+  background: #000 !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8) !important;
 }
 
-/* ========== 状态栏 ========== */
+/* 状态栏 */
 body.night-mode .status-bar {
-  color: #ffffff !important;
+  color: rgba(255, 255, 255, 0.95) !important;
 }
 
+body.night-mode .fullscreen-btn,
 body.night-mode .theme-toggle {
   background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(30px) !important;
-  -webkit-backdrop-filter: blur(30px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(30px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(150%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.18) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
-body.night-mode .theme-toggle-slider {
-  background: #ffffff !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+body.night-mode .theme-toggle .toggle-slider {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* ========== 页面指示器 ========== */
+/* 页面指示器 */
 body.night-mode .page-dot {
   background: rgba(255, 255, 255, 0.3) !important;
 }
 
 body.night-mode .page-dot.active {
-  background: #ffffff !important;
+  background: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* ========== App图标 ========== */
+/* App图标 - 磨砂玻璃无边框 */
 body.night-mode .app-icon-wrapper {
-  background: rgba(20, 20, 20, 0.7) !important;
-  backdrop-filter: blur(50px) !important;
-  -webkit-backdrop-filter: blur(50px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(30px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(150%) !important;
+  border: none !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5),
+              inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+}
+
+body.night-mode .app-item:active .app-icon-wrapper {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
+              inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
 }
 
 body.night-mode .app-icon {
-  color: #ffffff !important;
+  color: rgba(255, 255, 255, 0.95) !important;
 }
 
 body.night-mode .app-name {
-  color: #ffffff !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* ========== Widgets ========== */
+/* Widgets - 大圆角磨砂玻璃 */
 body.night-mode .widget-item {
   background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(40px) !important;
-  -webkit-backdrop-filter: blur(40px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(40px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(150%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
-/* ========== Profile Widget ========== */
+/* Profile Widget */
 body.night-mode .profile-widget {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 body.night-mode .profile-background {
@@ -80,32 +91,41 @@ body.night-mode .background-change-btn {
   background: rgba(255, 255, 255, 0.12) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 body.night-mode .background-change-btn i {
-  color: #ffffff !important;
+  color: rgba(255, 255, 255, 0.95) !important;
 }
 
 body.night-mode .profile-avatar {
   background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
 }
 
 body.night-mode .profile-name,
 body.night-mode .stat-number {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 body.night-mode .profile-bio {
   color: rgba(255, 255, 255, 0.8) !important;
   background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-radius: 14px !important;
 }
 
 body.night-mode .tag {
   background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   color: rgba(255, 255, 255, 0.85) !important;
+  border-radius: 14px !important;
 }
 
 body.night-mode .profile-stats {
@@ -121,17 +141,25 @@ body.night-mode .action-btn {
   background: rgba(255, 255, 255, 0.12) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
-/* ========== 音乐 Widget - 纯黑白 ========== */
+body.night-mode .action-btn:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* 音乐 Widget */
 body.night-mode .vinyl-disc {
   background: #1a1a1a !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
 }
 
 body.night-mode .vinyl-center {
-  background: #ffffff !important;
+  background: #fff !important;
   border: 2px solid #1a1a1a !important;
 }
 
@@ -153,75 +181,82 @@ body.night-mode .music-progress-bar-compact {
 
 body.night-mode .music-button-compact {
   background: rgba(255, 255, 255, 0.12) !important;
-  color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
   border: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 body.night-mode .music-button-compact.play-pause {
   background: rgba(255, 255, 255, 0.18) !important;
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 body.night-mode .lyric-line.main {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 body.night-mode .lyric-line.sub {
   color: rgba(255, 255, 255, 0.65) !important;
 }
 
-/* ========== Dock ========== */
+/* Dock - 磨砂玻璃 */
 body.night-mode .dock {
   background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(40px) !important;
-  -webkit-backdrop-filter: blur(40px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(40px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(150%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
 body.night-mode .dock-item.active {
   background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
 body.night-mode .dock-icon i {
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
+body.night-mode .dock-item.active .dock-icon i,
+body.night-mode .dock-item.active .dock-name {
+  color: #fff !important;
+}
+
 body.night-mode .dock-name {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
-body.night-mode .dock-item.active .dock-icon i {
-  color: #ffffff !important;
-}
-
-body.night-mode .dock-item.active .dock-name {
-  color: #ffffff !important;
-}
-
-/* ========== App页面 ========== */
+/* App Pages - 纯黑背景 */
 body.night-mode .app-page {
   background: #0a0a0a !important;
 }
 
 body.night-mode .app-header {
   background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(40px) !important;
-  -webkit-backdrop-filter: blur(40px) !important;
+  backdrop-filter: blur(40px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(150%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 body.night-mode .app-header h1 {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
-/* ========== 顶栏按钮 ========== */
+/* 顶栏按钮 - 白色 */
 body.night-mode .back-btn,
 body.night-mode .add-btn,
 body.night-mode .edit-btn,
 body.night-mode .save-btn,
 body.night-mode .settings-btn,
 body.night-mode .close-btn {
-  color: #ffffff !important;
+  color: rgba(255, 255, 255, 0.95) !important;
 }
 
 body.night-mode .back-btn:active, 
@@ -233,20 +268,22 @@ body.night-mode .close-btn:active {
   background: rgba(255, 255, 255, 0.12) !important;
 }
 
-/* ========== 表单和设置 ========== */
+/* 表单和设置 - 磨砂玻璃 */
 body.night-mode .settings-section,
 body.night-mode .edit-section,
 body.night-mode .detail-section {
   background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(30px) !important;
-  -webkit-backdrop-filter: blur(30px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(30px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(150%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 body.night-mode .section-title,
 body.night-mode .section-header {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 body.night-mode .form-group label,
@@ -262,7 +299,8 @@ body.night-mode .chat-input {
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: #ffffff !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
 }
 
 body.night-mode .form-input:focus, 
@@ -271,89 +309,101 @@ body.night-mode .form-select:focus,
 body.night-mode .chat-input:focus {
   background: rgba(255, 255, 255, 0.12) !important;
   border-color: rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2),
+              0 0 0 3px rgba(255, 255, 255, 0.08) !important;
 }
 
+/* 所有按钮 - 磨砂玻璃 */
 body.night-mode .primary-btn {
   background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  color: rgba(255, 255, 255, 0.98) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+body.night-mode .primary-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 
 body.night-mode .secondary-btn {
   background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
-body.night-mode .settings-value {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-body.night-mode .menu-item-icon i {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-body.night-mode .slider-hint {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-/* ========== 模式选择器 ========== */
-body.night-mode .mode-option {
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
-body.night-mode .mode-option.active {
-  border-color: rgba(255, 255, 255, 0.4) !important;
+body.night-mode .secondary-btn:hover {
   background: rgba(255, 255, 255, 0.15) !important;
 }
 
-body.night-mode .mode-option.active .mode-icon {
-  background: rgba(255, 255, 255, 0.25) !important;
-  color: #ffffff !important;
+body.night-mode .upload-btn,
+body.night-mode .generate-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  color: rgba(255, 255, 255, 0.98) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
-body.night-mode .mode-check {
-  color: #ffffff !important;
+body.night-mode .message-box {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
-body.night-mode .mode-title {
-  color: #ffffff !important;
-}
-
-body.night-mode .mode-desc {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-/* ========== 联系人卡片 ========== */
+/* 联系人卡片 - 磨砂玻璃 */
 body.night-mode .contact-card,
 body.night-mode .chat-item {
   background: rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(30px) !important;
   -webkit-backdrop-filter: blur(30px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  margin-bottom: 12px !important;
+}
+
+body.night-mode .contact-card:active,
+body.night-mode .chat-item:active {
+  background: rgba(255, 255, 255, 0.12) !important;
 }
 
 body.night-mode .contact-avatar,
 body.night-mode .chat-avatar,
 body.night-mode .detail-avatar {
   background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 body.night-mode .contact-info h3,
 body.night-mode .chat-info h3,
 body.night-mode .detail-name {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 body.night-mode .meta-tag {
   background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   color: rgba(255, 255, 255, 0.75) !important;
+  border-radius: 10px !important;
 }
 
 body.night-mode .contact-summary,
@@ -361,192 +411,41 @@ body.night-mode .chat-preview {
   color: rgba(255, 255, 255, 0.6) !important;
 }
 
-/* ========== 聊天界面 - 纯黑背景 ========== */
-body.night-mode .chat-messages {
-  background: #000000 !important;
-}
-
-body.night-mode .title-avatar {
+body.night-mode .avatar-preview {
   background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-body.night-mode .message-avatar {
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-
-body.night-mode .message-avatar img {
-  border-radius: 50% !important;
-}
-
-body.night-mode .message.user .message-bubble {
-  background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-body.night-mode .message.assistant .message-bubble {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-}
-
-body.night-mode .message-bubble.error {
-  background: rgba(180, 180, 180, 0.15) !important;
-  color: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-body.night-mode .chat-input-container {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(40px) !important;
-  -webkit-backdrop-filter: blur(40px) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-body.night-mode .send-btn,
-body.night-mode .add-pending-btn,
-body.night-mode .send-all-btn {
-  background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-body.night-mode .send-btn:disabled,
-body.night-mode .add-pending-btn:disabled,
-body.night-mode .send-all-btn:disabled {
-  opacity: 0.4 !important;
-}
-
-/* ========== Modal ========== */
-body.night-mode .modal-content {
-  background: rgba(20, 20, 20, 0.95) !important;
-  backdrop-filter: blur(40px) !important;
-  -webkit-backdrop-filter: blur(40px) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-
-body.night-mode .modal-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-body.night-mode .modal-header h2 {
-  color: #ffffff !important;
-}
-
-body.night-mode .picker-item {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-}
-
-body.night-mode .picker-avatar {
-  background: rgba(255, 255, 255, 0.1) !important;
-}
-
-body.night-mode .picker-item span {
-  color: #ffffff !important;
-}
-
-body.night-mode .empty-state {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-body.night-mode .chat-time {
-  color: rgba(255, 255, 255, 0.45) !important;
-}
-
-body.night-mode .chat-empty {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* ========== Tab Bar ========== */
-body.night-mode .tab-bar {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-body.night-mode .tab-item i,
-body.night-mode .tab-item span {
-  color: #94a3b8 !important;
-}
-
-body.night-mode .tab-item.active {
-  background: rgba(255, 255, 255, 0.15) !important;
-}
-
-body.night-mode .tab-item.active i,
-body.night-mode .tab-item.active span {
-  color: #ffffff !important;
-}
-
-/* ========== Avatar Toggle ========== */
-body.night-mode .avatar-toggle {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-
-body.night-mode .avatar-toggle.on {
-  background: rgba(255, 255, 255, 0.25) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-body.night-mode .avatar-toggle-slider {
-  background: rgba(255, 255, 255, 0.4) !important;
-}
-
-body.night-mode .avatar-toggle.on .avatar-toggle-slider {
-  background: #ffffff !important;
-}
-
-body.night-mode .avatar-toggle-item {
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
-body.night-mode .avatar-toggle-item span {
-  color: #ffffff !important;
-}
-
-/* ========== 颜色设置 ========== */
-body.night-mode .color-settings-item {
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
-body.night-mode .color-settings-item label {
-  color: #ffffff !important;
-}
-
-body.night-mode .color-input {
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
-/* ========== 其他元素 ========== */
+/* 详情页 - 磨砂玻璃 */
 body.night-mode .detail-card {
   background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(30px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(150%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 body.night-mode .detail-meta,
 body.night-mode .meta-item {
   background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   color: rgba(255, 255, 255, 0.75) !important;
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 body.night-mode .detail-summary,
 body.night-mode .settings-box {
   background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 16px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 body.night-mode .detail-summary p,
@@ -559,165 +458,143 @@ body.night-mode .detail-summary h3 {
   color: rgba(255, 255, 255, 0.65) !important;
 }
 
+/* 聊天 - 纯黑背景 */
+body.night-mode .chat-messages {
+  background: #000 !important;
+}
+
+body.night-mode .title-avatar {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+body.night-mode .message.user .message-bubble {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  color: #fff !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+body.night-mode .message.assistant .message-bubble {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+body.night-mode .message-bubble.error {
+  background: rgba(220, 38, 38, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: rgba(255, 100, 100, 0.95) !important;
+  border: 0.5px solid rgba(220, 38, 38, 0.3) !important;
+}
+
+body.night-mode .chat-input-container {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(40px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(150%) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+body.night-mode .send-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  color: #fff !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+body.night-mode .send-btn:disabled {
+  opacity: 0.4 !important;
+}
+
+/* Modal - 磨砂玻璃 */
+body.night-mode .modal-content {
+  background: rgba(20, 20, 20, 0.95) !important;
+  backdrop-filter: blur(40px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(150%) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+body.night-mode .modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.night-mode .modal-header h2 {
+  color: #fff !important;
+}
+
+body.night-mode .picker-item {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+body.night-mode .picker-item:active {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.night-mode .picker-avatar {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+body.night-mode .picker-item span {
+  color: #fff !important;
+}
+
+body.night-mode .empty-state {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.night-mode .empty-state .hint {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+body.night-mode .user-info {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 16px !important;
+}
+
 body.night-mode .image-placeholder {
   color: rgba(255, 255, 255, 0.5) !important;
 }
 
+body.night-mode .chat-time {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+body.night-mode .chat-empty {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.night-mode .contact-card > i {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 删除聊天按钮 */
 body.night-mode .delete-chat-btn {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(255, 100, 100, 0.9) !important;
 }
 
-/* ========== 删除所有彩色 - 强制覆盖 ========== */
-body.night-mode * {
-  /* 强制移除所有可能的彩色边框 */
-  border-color: rgba(255, 255, 255, 0.15) !important;
-}
-
-body.night-mode button:not(.send-btn):not(.primary-btn):not(.secondary-btn) {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-}
-
-/* 确保没有黄色警告色 */
-body.night-mode .warning,
-body.night-mode .alert,
-body.night-mode [class*="yellow"],
-body.night-mode [class*="warning"] {
-  background: rgba(255, 255, 255, 0.15) !important;
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-/* 壁纸模式 */
-body.night-mode .screen-container .widget-item {
-  background: rgba(20, 20, 20, 0.85) !important;
-  backdrop-filter: blur(50px) !important;
-  -webkit-backdrop-filter: blur(50px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-body.night-mode .screen-container .app-icon-wrapper {
-  background: rgba(20, 20, 20, 0.8) !important;
-  backdrop-filter: blur(40px) !important;
-  -webkit-backdrop-filter: blur(40px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-}
-
-body.night-mode .screen-container .app-name {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
-}
-
-body.night-mode .screen-container .dock {
-  background: rgba(20, 20, 20, 0.85) !important;
-  backdrop-filter: blur(50px) !important;
-  -webkit-backdrop-filter: blur(50px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-body.night-mode .screen-container .page-dot {
-  background: rgba(255, 255, 255, 0.5) !important;
-}
-
-body.night-mode .screen-container .page-dot.active {
-  background: #ffffff !important;
-}
-
-/* App列表样式 */
-body.night-mode .app-item-row {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-body.night-mode .app-icon-preview {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-}
-
-body.night-mode .app-label {
-  color: #ffffff !important;
-}
-
-body.night-mode .name-input {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: #ffffff !important;
-}
-
-/* 设置菜单列表 */
-body.night-mode .settings-menu-list {
-  background: transparent !important;
-}
-
-body.night-mode .settings-menu-item {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-}
-
-body.night-mode .menu-item-title {
-  color: #ffffff !important;
-}
-
-body.night-mode .menu-item-subtitle {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-body.night-mode .menu-item-arrow {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* CSS示例区域 */
-body.night-mode .css-example {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-body.night-mode .css-example h3 {
-  color: #ffffff !important;
-}
-
-body.night-mode .css-example pre {
-  color: rgba(255, 255, 255, 0.85) !important;
-  background: rgba(0, 0, 0, 0.3) !important;
-}
-
-/* 壁纸预览 */
-body.night-mode .wallpaper-preview {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-
-body.night-mode .empty-preview {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* 确认对话框 */
-body.night-mode .confirm-dialog {
-  background: rgba(20, 20, 20, 0.95) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-
-body.night-mode .confirm-dialog h3 {
-  color: #ffffff !important;
-}
-
-body.night-mode .confirm-dialog p {
-  color: rgba(255, 255, 255, 0.8) !important;
-}
-
-body.night-mode .confirm-btn {
-  background: rgba(255, 255, 255, 0.15) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-body.night-mode .confirm-btn.delete {
-  background: rgba(180, 180, 180, 0.2) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-}
-
-body.night-mode .cancel-btn {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+body.night-mode .delete-chat-btn:active {
+  background: rgba(255, 100, 100, 0.15) !important;
 }
