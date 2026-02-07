@@ -1,0 +1,1311 @@
+/* Calendar App Styles */
+.calendar-app {
+  background: transparent;
+}
+
+.calendar-tabs {
+  display: flex;
+  padding: 12px 16px;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.night-mode .calendar-tabs {
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.calendar-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-tab i {
+  font-size: 20px;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.calendar-tab span {
+  font-size: 12px;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+body.night-mode .calendar-tab i,
+body.night-mode .calendar-tab span {
+  color: #94a3b8;
+}
+
+.calendar-tab.active {
+  background: rgba(42, 42, 42, 0.08);
+}
+
+body.night-mode .calendar-tab.active {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.calendar-tab.active i,
+.calendar-tab.active span {
+  color: #1e293b;
+}
+
+body.night-mode .calendar-tab.active i,
+body.night-mode .calendar-tab.active span {
+  color: #fff;
+}
+
+.calendar-tab:active {
+  transform: scale(0.95);
+}
+
+/* 联系人网格 */
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+.calendar-contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 12px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.night-mode .calendar-contact-card {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calendar-contact-card:active {
+  transform: scale(0.96);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+body.night-mode .calendar-contact-card:active {
+  background: rgba(30, 41, 59, 0.6);
+}
+
+.calendar-contact-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+body.night-mode .calendar-contact-avatar {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.calendar-contact-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.calendar-contact-avatar i {
+  font-size: 28px;
+  color: #94a3b8;
+}
+
+.calendar-contact-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1e293b;
+  text-align: center;
+}
+
+body.night-mode .calendar-contact-name {
+  color: #fff;
+}
+
+/* 联系人日历视图 */
+.contact-calendar-view,
+.my-calendar-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.calendar-contact-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+}
+
+body.night-mode .calendar-contact-header {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.calendar-back-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1e293b;
+  flex-shrink: 0;
+}
+
+body.night-mode .calendar-back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.calendar-back-btn:active {
+  transform: scale(0.9);
+}
+
+.calendar-regenerate-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1e293b;
+  flex-shrink: 0;
+}
+
+body.night-mode .calendar-regenerate-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.calendar-regenerate-btn:active {
+  transform: scale(0.9);
+}
+
+.calendar-regenerate-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.calendar-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+body.night-mode .calendar-loading {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.calendar-loading i {
+  font-size: 32px;
+}
+
+.calendar-loading div {
+  font-size: 14px;
+}
+
+.calendar-contact-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.calendar-contact-avatar-small {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+body.night-mode .calendar-contact-avatar-small {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.calendar-contact-avatar-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.calendar-contact-avatar-small i {
+  font-size: 22px;
+  color: #94a3b8;
+}
+
+.calendar-contact-name-large {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+body.night-mode .calendar-contact-name-large {
+  color: #fff;
+}
+
+.calendar-contact-subtitle {
+  font-size: 13px;
+  color: #64748b;
+}
+
+body.night-mode .calendar-contact-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 我的日程表列表 */
+.calendar-list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calendar-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.calendar-list-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+body.night-mode .calendar-list-header h2 {
+  color: #fff;
+}
+
+.create-calendar-btn {
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.night-mode .create-calendar-btn {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.create-calendar-btn:active {
+  transform: scale(0.96);
+}
+
+.calendar-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.calendar-empty-state i {
+  font-size: 48px;
+  color: #cbd5e1;
+}
+
+body.night-mode .calendar-empty-state i {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.calendar-empty-state p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+body.night-mode .calendar-empty-state p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.empty-hint {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #94a3b8 !important;
+}
+
+body.night-mode .empty-hint {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.calendar-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendar-card {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.night-mode .calendar-card {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calendar-card-color {
+  width: 6px;
+  flex-shrink: 0;
+}
+
+.calendar-card-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calendar-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+body.night-mode .calendar-card-name {
+  color: #fff;
+}
+
+.calendar-card-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+body.night-mode .calendar-card-stats {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.calendar-card-stats i {
+  margin-right: 4px;
+}
+
+.calendar-card-shared {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.shared-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.05);
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+body.night-mode .shared-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.calendar-card-actions {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 4px;
+}
+
+.calendar-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #64748b;
+}
+
+body.night-mode .calendar-action-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.calendar-action-btn:active {
+  transform: scale(0.9);
+}
+
+.calendar-action-btn.delete {
+  color: #FF3B30;
+}
+
+/* 日程表详情视图 */
+.calendar-detail-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calendar-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+}
+
+body.night-mode .calendar-detail-header {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.calendar-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.calendar-title-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.calendar-detail-title span {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+body.night-mode .calendar-detail-title span {
+  color: #fff;
+}
+
+/* 日历导航 */
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+}
+
+body.night-mode .calendar-navigation {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.calendar-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #1e293b;
+  font-size: 14px;
+}
+
+body.night-mode .calendar-nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.calendar-nav-btn:active {
+  transform: scale(0.9);
+}
+
+.calendar-month-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+body.night-mode .calendar-month-title {
+  color: #fff;
+}
+
+/* 日历网格 */
+.calendar-grid {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+body.night-mode .calendar-grid {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.calendar-weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  padding: 8px 0;
+}
+
+body.night-mode .calendar-weekday {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.calendar-day.empty {
+  pointer-events: none;
+}
+
+.calendar-day:not(.empty):active {
+  transform: scale(0.9);
+}
+
+.calendar-day.today {
+  background: rgba(42, 42, 42, 0.08);
+}
+
+body.night-mode .calendar-day.today {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.calendar-day-number {
+  font-size: 12px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+body.night-mode .calendar-day-number {
+  color: #fff;
+}
+
+.calendar-day.today .calendar-day-number {
+  font-weight: 700;
+}
+
+.calendar-day-event {
+  width: 100%;
+  font-size: 9px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.calendar-day.has-event .calendar-day-number {
+  font-weight: 600;
+}
+
+/* 日历月视图（旧版兼容） */
+.calendar-month {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+body.night-mode .calendar-month {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.day-number {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+body.night-mode .day-number {
+  color: #fff;
+}
+
+.calendar-day.has-day {
+  cursor: pointer;
+}
+
+.calendar-day.has-day:active {
+  transform: scale(0.9);
+}
+
+.event-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4px;
+}
+
+.event-indicator.ai {
+  background: #6b7280;
+}
+
+.event-indicator.mine {
+  background: #2a2a2a;
+}
+
+body.night-mode .event-indicator.ai {
+  background: #9ca3af;
+}
+
+body.night-mode .event-indicator.mine {
+  background: #fff;
+}
+
+/* 日历图例 */
+.calendar-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legend-dot.ai-event {
+  background: #6b7280;
+}
+
+.legend-dot.my-event {
+  background: #2a2a2a;
+}
+
+body.night-mode .legend-dot.ai-event {
+  background: #9ca3af;
+}
+
+body.night-mode .legend-dot.my-event {
+  background: #fff;
+}
+
+.legend-item span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+body.night-mode .legend-item span {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 日程详情展开区域 */
+.calendar-event-expand {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  overflow: hidden;
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.night-mode .calendar-event-expand {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.event-expand-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.night-mode .event-expand-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.event-expand-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+body.night-mode .event-expand-date {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.event-expand-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+body.night-mode .event-expand-close {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.event-expand-close:active {
+  transform: scale(0.9);
+}
+
+.event-expand-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.event-expand-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+body.night-mode .event-expand-title {
+  color: #fff;
+}
+
+.event-expand-title i {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+.event-expand-time {
+  font-size: 14px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+body.night-mode .event-expand-time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.event-expand-time i {
+  font-size: 14px;
+}
+
+.event-expand-description {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+body.night-mode .event-expand-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.event-expand-actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.night-mode .event-expand-actions {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.event-action-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.event-action-btn.edit {
+  background: #2a2a2a;
+  color: white;
+}
+
+body.night-mode .event-action-btn.edit {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.event-action-btn:active {
+  transform: scale(0.98);
+}
+
+/* 日程详情弹窗（已废弃，保留兼容性） */
+.calendar-event-detail {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 360px;
+  padding: 24px;
+  animation: scaleIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+body.night-mode .calendar-event-detail {
+  background: #1e293b;
+}
+
+.calendar-detail-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+body.night-mode .calendar-detail-close {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.calendar-detail-close:active {
+  transform: scale(0.9);
+}
+
+.calendar-detail-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.calendar-detail-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+body.night-mode .calendar-detail-title {
+  color: #fff;
+}
+
+.calendar-detail-title i {
+  font-size: 22px;
+  color: #6b7280;
+}
+
+.calendar-detail-time {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+body.night-mode .calendar-detail-time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.calendar-detail-description {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+body.night-mode .calendar-detail-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 日程编辑器 */
+.calendar-event-editor,
+.calendar-editor-modal {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-height: 80vh;
+  padding: 0;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+body.night-mode .calendar-event-editor,
+body.night-mode .calendar-editor-modal {
+  background: #1e293b;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+}
+
+body.night-mode .editor-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.editor-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  flex: 1;
+  text-align: center;
+}
+
+body.night-mode .editor-title {
+  color: #fff;
+}
+
+.editor-save-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a2a2a;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+body.night-mode .editor-save-btn {
+  color: #fff;
+}
+
+.editor-save-btn:active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.night-mode .editor-save-btn:active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.editor-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  padding: 16px 20px 8px;
+}
+
+.editor-form {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+body.night-mode .form-group label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.permission-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: -4px;
+}
+
+body.night-mode .permission-hint {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-option.active {
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+body.night-mode .color-option.active {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.color-option:active {
+  transform: scale(0.95);
+}
+
+.form-input,
+.form-textarea {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: rgba(0, 0, 0, 0.02);
+  font-size: 15px;
+  color: #1e293b;
+  transition: all 0.2s ease;
+}
+
+body.night-mode .form-input,
+body.night-mode .form-textarea {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #2a2a2a;
+}
+
+body.night-mode .form-input:focus,
+body.night-mode .form-textarea:focus {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-textarea {
+  resize: none;
+  font-family: inherit;
+}
+
+/* 分享联系人选择 */
+.shared-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.shared-contact-chip {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: transparent;
+  font-size: 13px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.night-mode .shared-contact-chip {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.shared-contact-chip.active {
+  background: #2a2a2a;
+  border-color: #2a2a2a;
+  color: white;
+}
+
+body.night-mode .shared-contact-chip.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.shared-contact-chip:active {
+  transform: scale(0.96);
+}
+
+.shared-contact-chip i {
+  font-size: 12px;
+}
+
+.delete-event-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: #FF3B30;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.delete-event-btn:active {
+  background: #FF2D23;
+  transform: scale(0.98);
+}
+
+/* 日历提示 */
+.calendar-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+body.night-mode .calendar-tip {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.calendar-tip i {
+  font-size: 14px;
+}

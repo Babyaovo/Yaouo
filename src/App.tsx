@@ -1,7 +1,18 @@
+import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { StatusBar } from './components/StatusBar';
+import { ProfileWidget } from './components/ProfileWidget';
+import { MusicWidget } from './components/MusicWidget';
+import { AppsGrid } from './components/AppsGrid';
+import { PageIndicator } from './components/PageIndicator';
+import { Dock } from './components/Dock';
 import { SettingsPage } from './components/pages/SettingsPage';
 import { ContactsApp } from './components/apps/ContactsApp';
 import { ChatApp } from './components/apps/ChatApp';
 import { GalleryApp } from './components/apps/GalleryApp';
+import { CalendarApp } from './components/apps/CalendarApp';
+import { Vestige } from './components/apps/Vestige';
+import './styles/calendar.css';
 
 interface AppState {
   currentPage: number;
@@ -26,10 +37,41 @@ interface AppState {
     selectedModel: string;
     availableModels: string[];
   };
+  apiProfiles?: Array<{ // 新增：API配置方案
+    id: string;
+    name: string;
+    apiUrl: string;
+    apiKey: string;
+    selectedModel: string;
+    createdAt: number;
+  }>;
+  currentProfileId?: string; // 新增：当前使用的方案ID
+  userProfiles?: Array<{ // 新增：用户信息方案
+    id: string;
+    name: string;
+    userName: string;
+    userAvatar: string;
+    userSettings: string;
+    createdAt: number;
+  }>;
+  currentUserProfileId?: string; // 新增：当前使用的用户信息方案ID
   contacts: any[];
   chats: any[];
+  moments: any[];
   currentChatId: string | null;
   currentContactId: string | null;
+  customAppIcons?: Record<string, string>;
+  customAppNames?: Record<string, string>;
+  customAppIconImages?: Record<string, string>;
+  customBubbleCSS?: string;
+  customChatCSS?: string;
+  myCalendarEvents?: Record<string, any>;
+  vestigeArtifacts?: any[];
+  characters?: any[];
+  userInfo?: {
+    name: string;
+    avatar: string;
+  };
 }
 
 export default function App() {
@@ -58,6 +100,7 @@ export default function App() {
     },
     contacts: [],
     chats: [],
+    moments: [],
     currentChatId: null,
     currentContactId: null
   });
@@ -65,7 +108,29 @@ export default function App() {
   useEffect(() => {
     const savedState = localStorage.getItem('phoneAppState');
     if (savedState) {
-      setAppState(JSON.parse(savedState));
+      const parsed = JSON.parse(savedState);
+      setAppState(parsed);
+      
+      // 恢复自定义CSS
+      if (parsed.customBubbleCSS) {
+        let styleEl = document.getElementById('custom-bubble-style');
+        if (!styleEl) {
+          styleEl = document.createElement('style');
+          styleEl.id = 'custom-bubble-style';
+          document.head.appendChild(styleEl);
+        }
+        styleEl.textContent = parsed.customBubbleCSS;
+      }
+      
+      if (parsed.customChatCSS) {
+        let styleEl = document.getElementById('custom-chat-style');
+        if (!styleEl) {
+          styleEl = document.createElement('style');
+          styleEl.id = 'custom-chat-style';
+          document.head.appendChild(styleEl);
+        }
+        styleEl.textContent = parsed.customChatCSS;
+      }
     }
   }, []);
 
@@ -118,7 +183,7 @@ export default function App() {
   };
 
   const openChat = (chatId: string) => {
-    setAppState(prev => ({ ...prev, currentChatId: chatId, currentApp: 'chat-detail' }));
+    setAppState(prev => ({ ...prev, currentChatId: chatId, currentApp: 'chat-list' }));
   };
 
   const openContactDetail = (contactId: string) => {
@@ -157,7 +222,17 @@ export default function App() {
       messages: [],
       lastMessage: '',
       lastTime: Date.now(),
-      wallpaper: ''
+      wallpaper: '',
+      settings: {
+        contextRounds: 10,
+        temperature: 0.8,
+        coreMemory: '',
+        memoryInterval: 10,
+        showAIAvatar: true,
+        showUserAvatar: true,
+        headerDisplayMode: 'both',
+        chatMode: 'message'
+      }
     };
 
     setAppState(prev => ({
@@ -166,6 +241,15 @@ export default function App() {
     }));
     
     openChat(newChat.id);
+  };
+
+  const handleViewContact = (contactId: string) => {
+    // 关闭当前chat app，打开contacts app并显示详情
+    setAppState(prev => ({
+      ...prev,
+      currentContactId: contactId,
+      currentApp: 'contacts'
+    }));
   };
 
   // 渲染当前打开的app
@@ -178,15 +262,30 @@ export default function App() {
           appState={appState} 
           onUpdate={updateProfile} 
           onClose={closeApp}
+          onStartChat={handleContactSelect}
+          onViewContact={handleViewContact}
         />;
       case 'chat-list':
         return <ChatApp 
           appState={appState} 
           onUpdate={updateProfile}
           onClose={closeApp}
+          onViewContact={handleViewContact}
         />;
       case 'gallery':
         return <GalleryApp 
+          appState={appState} 
+          onUpdate={updateProfile}
+          onClose={closeApp}
+        />;
+      case 'calendar':
+        return <CalendarApp 
+          appState={appState} 
+          onUpdate={updateProfile}
+          onClose={closeApp}
+        />;
+      case 'vestige':
+        return <Vestige 
           appState={appState} 
           onUpdate={updateProfile}
           onClose={closeApp}
@@ -221,7 +320,12 @@ export default function App() {
               />
             </div>
             
-            <AppsGrid onOpenApp={openApp} />
+            <AppsGrid 
+              onOpenApp={openApp}
+              customIcons={appState.customAppIcons}
+              customNames={appState.customAppNames}
+              customIconImages={appState.customAppIconImages}
+            />
           </div>
 
           <div className="page" id="page-1">

@@ -232,9 +232,9 @@ body.night-mode .dock-name {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* App Pages - 纯黑背景 */
+/* App Pages - 透明背景 */
 body.night-mode .app-page {
-  background: #0a0a0a !important;
+  background: transparent !important;
 }
 
 body.night-mode .app-header {
@@ -293,8 +293,7 @@ body.night-mode .settings-item label {
 
 body.night-mode .form-input, 
 body.night-mode .form-textarea, 
-body.night-mode .form-select,
-body.night-mode .chat-input {
+body.night-mode .form-select {
   background: rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
@@ -305,8 +304,7 @@ body.night-mode .chat-input {
 
 body.night-mode .form-input:focus, 
 body.night-mode .form-textarea:focus, 
-body.night-mode .form-select:focus,
-body.night-mode .chat-input:focus {
+body.night-mode .form-select:focus {
   background: rgba(255, 255, 255, 0.12) !important;
   border-color: rgba(255, 255, 255, 0.25) !important;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2),
@@ -429,7 +427,10 @@ body.night-mode .detail-card {
               inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
-body.night-mode .detail-meta,
+body.night-mode .detail-meta {
+  background: transparent !important;
+}
+
 body.night-mode .meta-item {
   background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px) !important;
@@ -497,23 +498,7 @@ body.night-mode .message-bubble.error {
   border: 0.5px solid rgba(220, 38, 38, 0.3) !important;
 }
 
-body.night-mode .chat-input-container {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(40px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(150%) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-}
-
-body.night-mode .send-btn {
-  background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  color: #fff !important;
-  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
-              inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-}
+/* 聊天输入区域已在 globals.css 中定义 */
 
 body.night-mode .send-btn:disabled {
   opacity: 0.4 !important;
@@ -597,4 +582,64 @@ body.night-mode .delete-chat-btn {
 
 body.night-mode .delete-chat-btn:active {
   background: rgba(255, 100, 100, 0.15) !important;
+}
+
+/* ============================================
+   强制覆盖所有剩余的蓝色元素为黑白灰
+   ============================================ */
+
+/* 聊天输入框按钮 */
+body.night-mode .add-pending-btn,
+body.night-mode .send-all-btn {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+body.night-mode .add-pending-btn:active,
+body.night-mode .send-all-btn:active {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 设置值 */
+body.night-mode .settings-value {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 待发送消息气泡 */
+body.night-mode .pending-bubble {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 模式选择器 */
+body.night-mode .mode-option.active {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.night-mode .mode-option.active .mode-icon {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+}
+
+body.night-mode .mode-check {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* 翻译开关 - 夜间模式纯黑白灰 */
+body.night-mode .translation-toggle.on {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+body.night-mode .translation-toggle {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 颜色选择器 */
+body.night-mode .color-option {
+  border: 2px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+body.night-mode .color-option.selected {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) !important;
 }

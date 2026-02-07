@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ContactsPage } from '../pages/ContactsPage';
 import { ContactDetailPage } from '../pages/ContactDetailPage';
@@ -8,11 +8,21 @@ interface ContactsAppProps {
   appState: any;
   onUpdate: (updates: any) => void;
   onClose: () => void;
+  onStartChat?: (contactId: string) => void;
+  onViewContact?: (contactId: string) => void;
 }
 
-export function ContactsApp({ appState, onUpdate, onClose }: ContactsAppProps) {
+export function ContactsApp({ appState, onUpdate, onClose, onStartChat, onViewContact }: ContactsAppProps) {
   const [subPage, setSubPage] = useState<'list' | 'detail' | 'edit'>('list');
   const [currentContactId, setCurrentContactId] = useState<string | null>(null);
+
+  // 监听从外部传入的currentContactId，自动打开详情页
+  useEffect(() => {
+    if (appState.currentContactId) {
+      setCurrentContactId(appState.currentContactId);
+      setSubPage('detail');
+    }
+  }, [appState.currentContactId]);
 
   const openDetail = (contactId: string) => {
     setCurrentContactId(contactId);
@@ -27,6 +37,18 @@ export function ContactsApp({ appState, onUpdate, onClose }: ContactsAppProps) {
   const backToList = () => {
     setSubPage('list');
     setCurrentContactId(null);
+  };
+
+  const handleStartChat = (contactId: string) => {
+    if (onStartChat) {
+      onStartChat(contactId);
+    }
+  };
+
+  const handleViewContact = (contactId: string) => {
+    if (onViewContact) {
+      onViewContact(contactId);
+    }
   };
 
   return (
@@ -63,6 +85,8 @@ export function ContactsApp({ appState, onUpdate, onClose }: ContactsAppProps) {
               appState={{ ...appState, currentContactId }}
               onClose={backToList}
               onEdit={() => openEdit(currentContactId || undefined)}
+              onStartChat={handleStartChat}
+              onViewContact={handleViewContact}
             />
           </motion.div>
         )}
